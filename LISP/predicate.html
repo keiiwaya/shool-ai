@@ -1,0 +1,148 @@
+ <html>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<h3>真(T)，偽(NIL)を返す関数</h3>
+
+<ol type=1>
+<li> null<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(null '())</font>
+T
+
+&gt;<font color=blue>(null nil)</font>
+T
+
+&gt;<font color=blue>(null '(a b c))</font>
+NIL
+</pre><tr></table><p>
+
+
+<li> atom<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(atom 'abc)</font>
+T
+
+&gt;<font color=blue>(atom '(a b c))</font>
+NIL
+
+&gt;<font color=blue>(atom nil)</font>
+T
+</pre><tr></table><p>
+
+<li> consp<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(consp 'abc)</font>
+NIL
+
+&gt;<font color=blue>(consp '(a b c))</font>
+T
+
+&gt;<font color=blue>(consp nil)</font>
+NIL
+</pre><tr></table><p>
+
+<li> listp<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(listp 'abc)</font>
+NIL
+
+&gt;<font color=blue>(listp '(a b c))</font>
+T
+
+&gt;<font color=blue>(listp nil)</font>
+T
+</pre><tr></table><p>
+
+<li> numberp<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(numberp 'abc)</font>
+NIL
+
+&gt;<font color=blue>(numberp 56)</font>
+T
+
+&gt;<font color=blue>(numberp '(23 468))</font>
+NIL
+</pre><tr></table><p>
+
+<li> equal<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(equal 'a 'a)</font>
+T
+
+&gt;<font color=blue>(equal 'a 'b)</font>
+NIL
+
+&gt;<font color=blue>(equal '(a b) '(a b))</font>
+T
+</pre><tr></table><p>
+
+<li> not<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(not t)</font>
+NIL
+
+&gt;<font color=blue>(not nil)</font>
+T
+
+&gt;<font color=blue>(not (equal 'a 'a))</font>
+NIL
+
+&gt;<font color=blue>(not (= 3 (+ 4 6)))</font>
+T
+</pre><tr></table><p>
+
+<li> and<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(and t t)</font>
+T
+
+&gt;<font color=blue>(and  t nil t t)</font>
+NIL
+
+&gt;<font color=blue>(and (equal 'a 'a) (null 'a))</font>
+NIL
+
+&gt;<font color=blue>(and (= 10 (+ 4 6)) (= (* 3 4) 12) (atom 2))</font>
+T
+
+&gt;<font color=blue>(and)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+
+<li> or<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(or t t)</font>
+T
+
+&gt;<font color=blue>(or  t nil t t)</font>
+T
+
+&gt;<font color=blue>(or  nil nil)</font>
+NIL
+
+&gt;<font color=blue>(or (null 'a) (equal 'a 'b))</font>
+NIL
+
+&gt;<font color=blue>(or (= 15 (+ 4 6)) (= (* 3 4) 12) (atom '(2 3)))</font>
+T
+
+&gt;<font color=blue>(or)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+</ol>
+</html>

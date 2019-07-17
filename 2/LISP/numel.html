@@ -1,0 +1,477 @@
+<html>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<h3>数</h3>
+<ol type=i>
+<li><a href="#p">述語 (Predicate)</a>
+<li><a href="#cmp">比較</a>
+<li><a href="#cmpu">演算</a>
+</ol>
+<hr>
+<ol type=i>
+<li><a name="p"><h3>述語 (Predicate)</h3></a>
+<ol type=1>
+<li> zerop<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(zerop 1)</font>
+NIL
+
+&gt;<font color=blue>(zerop 0)</font>
+T
+
+&gt;<font color=blue>(setq five 5)</font>
+5
+
+&gt;<font color=blue>(setq zero 0)</font>
+0
+
+&gt;<font color=blue>(zerop five)</font>
+NIL
+
+&gt;<font color=blue>(zerop zero)</font>
+T
+</pre><tr></table><p>
+
+<li> plusp<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(plusp 16)</font>
+T
+
+&gt;<font color=blue>(plusp -30)</font>
+NIL
+
+&gt;<font color=blue>(setq five 5)</font>
+5
+
+&gt;<font color=blue>(setq minusThree -3)</font>
+-3
+
+&gt;<font color=blue>(plusp five)</font>
+T
+
+&gt;<font color=blue>(plusp minusThree)</font>
+NIL
+</pre><tr></table><p>
+
+<li> minusp<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(minusp 16)</font>
+NIL
+
+&gt;<font color=blue>(minusp -30)</font>
+T
+
+&gt;<font color=blue>(setq five 5)</font>
+5
+
+&gt;<font color=blue>(setq minusThree -3)</font>
+-3
+
+&gt;<font color=blue>(minusp five)</font>
+NIL
+
+&gt;<font color=blue>(minusp minusThree)</font>
+T
+</pre><tr></table><p>
+
+<li> oddp<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(oddp 16)</font>
+NIL
+
+&gt;<font color=blue>(oddp 31)</font>
+T
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(setq three 3)</font>
+3
+
+&gt;<font color=blue>(oddp six)</font>
+NIL
+
+&gt;<font color=blue>(oddp three)</font>
+T
+</pre><tr></table><p>
+
+<li> evenp<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(evenp 16)</font>
+T
+
+&gt;<font color=blue>(evenp 31)</font>
+NIL
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(setq three 3)</font>
+3
+
+&gt;<font color=blue>(evenp six)</font>
+T
+
+&gt;<font color=blue>(evenp three)</font>
+NIL
+</pre><tr></table><p>
+
+</ol>
+<hr>
+
+<li><a name="cmp"><h3>比較</h3></a>
+<ol type=1>
+<li> =<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(= 19 19)</font>
+T
+
+&gt;<font color=blue>(= 31 -23)</font>
+NIL
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(setq three 3)</font>
+3
+
+&gt;<font color=blue>(setq x (+ 1 2))</font>
+3
+
+&gt;<font color=blue>(= six three)</font>
+NIL
+
+&gt;<font color=blue>(= x three)</font>
+T
+</pre><tr></table><p>
+
+<li> /=<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(/= 19 19)</font>
+NIL
+
+&gt;<font color=blue>(/= 31 -23)</font>
+T
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(setq three 3)</font>
+3
+
+&gt;<font color=blue>(setq x (- 5 2))</font>
+3
+
+&gt;<font color=blue>(/= six three)</font>
+T
+
+&gt;<font color=blue>(/= x three)</font>
+NIL
+</pre><tr></table><p>
+
+<li> &lt;<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(&lt; 19 1)</font>
+NIL
+
+&gt;<font color=blue>(&lt; -31 23)</font>
+T
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(setq three 3)</font>
+3
+
+&gt;<font color=blue>(setq x (+ 1 2))</font>
+3
+
+&gt;<font color=blue>(&lt; three six)</font>
+T
+
+&gt;<font color=blue>(&lt x three)</font>
+NIL
+</pre><tr></table><p>
+
+<li> &gt;<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(&gt; 19 1)</font>
+T
+
+&gt;<font color=blue>(&gt; -31 23)</font>
+NIL
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(setq three 3)</font>
+3
+
+&gt;<font color=blue>(setq x (/ 6 2))</font>
+3
+
+&gt;<font color=blue>(&gt; six three)</font>
+T
+
+&gt;<font color=blue>(&gt x three)</font>
+NIL
+</pre><tr></table><p>
+
+<li> &lt;=<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(&lt;= 19 1)</font>
+NIL
+
+&gt;<font color=blue>(&lt;= -31 23)</font>
+T
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(setq three 3)</font>
+3
+
+&gt;<font color=blue>(setq x (+ 1 2))</font>
+3
+
+&gt;<font color=blue>(&lt;= three six)</font>
+T
+
+&gt;<font color=blue>(&lt;= x three)</font>
+T
+</pre><tr></table><p>
+
+<li> &gt;=<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(&gt;= 19 1)</font>
+T
+
+&gt;<font color=blue>(&gt;= -31 23)</font>
+NIL
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(setq three 3)</font>
+3
+
+&gt;<font color=blue>(setq x (/ 6 2))</font>
+3
+
+&gt;<font color=blue>(&gt;= six three)</font>
+T
+
+&gt;<font color=blue>(&gt;= x three)</font>
+T
+</pre><tr></table><p>
+
+<li> max<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(max 2 9 14 3)</font>
+14
+</pre><tr></table><p>
+
+<li> min<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(min 2 9 14 3)</font>
+2
+</pre><tr></table><p>
+
+</ol>
+<hr>
+<li><a name="cmpu"><h3>演算</h3></a>
+<ol type=1>
+<li> +<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(+ 1 2)</font>
+3
+
+&gt;<font color=blue>(+ 41 2 15 38)</font>
+96
+
+&gt;<font color=blue>(setq five 5)</font>
+5
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(+ five six)</font>
+11
+
+&gt;<font color=blue>(+)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+
+
+<li> -<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(- 6 2)</font>
+4
+
+&gt;<font color=blue>(- 50 2 25)</font>
+23
+
+&gt;<font color=blue>(- 25)</font>
+-25
+
+&gt;<font color=blue>(setq five 5)</font>
+5
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(- six five)</font>
+1
+</pre><tr></table><p>
+
+
+<li> 1+<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(1+ 20)</font>
+21
+
+&gt;<font color=blue>(setq five 5)</font>
+5
+
+&gt;<font color=blue>(1+ five)</font>
+6
+</pre><tr></table><p>
+
+<li> 1-<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(1- 20)</font>
+19
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(1- six)</font>
+5
+</pre><tr></table><p>
+
+<li> *<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(* 3 6)</font>
+18
+
+&gt;<font color=blue>(* 2 3 4)</font>
+24
+
+&gt;<font color=blue>(setq five 5)</font>
+5
+
+&gt;<font color=blue>(setq six 6)</font>
+6
+
+&gt;<font color=blue>(* six five)</font>
+30
+
+&gt;<font color=blue>(*)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+
+
+<li> /<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(/ 6 3)</font>
+2
+
+&gt;<font color=blue>(/ 1 3)</font>
+1/3
+
+&gt;<font color=blue>(/ 2 4)</font>
+1/2
+
+&gt;<font color=blue>(setq half (/ 1 2))</font>
+1/2
+
+&gt;<font color=blue>(setq quater (/ 1 4))</font>
+1/4
+
+&gt;<font color=blue>(+ half quater)</font>
+3/4
+</pre><tr></table><p>
+
+<li> abs<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(abs 2)</font>
+2
+
+&gt;<font color=blue>(abs -32)</font>
+32
+</pre><tr></table><p>
+
+<li> exp<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(exp 2)</font>
+7.3890560989306504
+
+&gt;<font color=blue>(exp (/ 3.4 2.1))</font>
+5.0482801405193127
+</pre><tr></table><p>
+
+<li> log<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(log 2)</font>
+0.69314718055994529
+
+&gt;<font color=blue>(setq x (exp 1))</font>
+2.7182818284590451
+
+&gt;<font color=blue>(log x)</font>
+1.0
+</pre><tr></table><p>
+
+<li> sin, asin<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(sin (/ 3.1415926535897931 2))</font>
+1.0
+
+&gt;<font color=blue>(setq x (* 2 3.1415926535897931))</font>
+6.2831853071795862
+
+&gt;<font color=blue>(sin x)</font>
+-2.4492127076447545E-16
+
+&gt;<font color=blue>(asin 1)</font>
+1.5707963267948966
+</pre><tr></table><p>
+
+<li> cos, acos<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(cos (/ 3.1415926535897931 2))</font>
+6.1230317691118863E-17
+
+&gt;<font color=blue>(setq x (* 2 3.1415926535897931))</font>
+6.2831853071795862
+
+&gt;<font color=blue>(cos x)</font>
+1.0
+
+&gt;<font color=blue>(acos 0)</font>
+1.5707963267948966
+</pre><tr></table><p>
+
+<li> tan, atan<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(tan (/ 3.1415926535897931 4))</font>
+0.99999999999999989
+
+&gt;<font color=blue>(atan 1)</font>
+0.78539816339744828
+</pre><tr></table><p>
+
+</ol>
+</ol>
+</html>

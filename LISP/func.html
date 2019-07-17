@@ -1,0 +1,51 @@
+<html>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<h3>関数定義</h3>
+
+<ol type=1>
+<li> defun
+<pre>
+(defun 関数名　(パラメータ1, パラメータ2, ... パラメータn)
+                プロセスの記述)
+</pre>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun  doll-to-yen (doll)
+          (* doll 109))</font>
+DOLL-TO-YEN
+
+&gt;<font color=blue>(setq book 15)</font>
+15
+
+&gt;<font color=blue>(doll-to-yen book)</font>
+1635
+</pre><tr></table><p>
+
+
+<li> <a name= "cond">cond</a>
+<pre>
+(cond
+     (テスト1　結果1)
+     (テスト2　結果2)
+              :
+     (テストn　結果n))
+</pre>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun  reverse1 (lst switch)
+       (cond
+           ((equal 'yes switch) (reverse lst))
+           (t lst)))</font>
+REVERSE1
+
+&gt;<font color=blue>(setq lat '(I hate lisp))</font>
+(I HATE LISP)
+
+&gt;<font color=blue>(reverse1 lat 'yes)</font>
+(LISP HATE I)
+
+&gt;<font color=blue>(reverse1 lat 'no)</font>
+(I HATE LISP)
+</pre><tr></table><p>
+</ol>
+</html>

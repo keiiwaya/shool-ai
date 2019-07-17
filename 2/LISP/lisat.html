@@ -1,0 +1,140 @@
+<html>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<h3>リストやアトムを返す関数</h3>
+
+<ol type=1>
+<li> setq<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(setq lst '(I hope (you will love lisp)))</font>
+(I HOPE (YOU WILL LOVE LISP))
+
+&gt;<font color=blue>(car lst)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+&gt;<font color=blue>(cdr lst)
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+&gt;<font color=blue>(atom lst)
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+&gt;<font color=blue>(equal lst)
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+&gt;<font color=blue>(car (cddr lst))
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+
+<li> cons<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(cons 'You '(and I))</font>
+(YOU AND I)
+
+&gt;<font color=blue>(setq lst '(I hate lisp))</font>
+(I HATE LISP)
+
+&gt;<font color=blue>(cons (car lst) '(need lisp))</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+&gt;<font color=blue>(cons (car lst) (cons 'love (cddr lst)))</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+
+
+<li> append<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(setq lst '(yes or no))</font>
+(YES OR NO)
+
+&gt;<font color=blue>(append '(Answer) lst)</font>
+(ANSWER YES OR NO)
+
+&gt;<font color=blue>(append '(You have to answer) lst)</font>
+(YOU HAVE TO ANSWER YES OR NO)
+</pre><tr></table><p>
+
+
+<li> list<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(setq lst '(yes or no))</font>
+(YES OR NO)
+
+&gt;<font color=blue>(list 'Answer lst)</font>
+(ANSWER (YES OR NO))
+
+&gt;<font color=blue>(list '(Answer) lst)</font>
+((ANSWER) (YES OR NO))
+
+&gt;<font color=blue>(list '(You have to answer) lst)</font>
+((YOU HAVE TO ANSWER) (YES OR NO))
+
+&gt;<font color=blue>(list 'I 'have 'a 'pen)</font>
+(I HAVE A PEN)
+
+&gt;<font color=blue>(list)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+
+</pre><tr></table><p>
+
+
+<li> length<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(setq lst '(I hate lisp))</font>
+(I HATE LISP)
+
+&gt;<font color=blue>(length lst)</font>
+3
+
+&gt;<font color=blue>(setq lst '((I) hate (lisp)))</font>
+((I) HATE (LISP))
+
+&gt;<font color=blue>(length lst)</font>
+3
+&gt;<font color=blue>(setq lst '((I hate lisp)))</font>
+((I HATE LISP))
+
+&gt;<font color=blue>(length lst)</font>
+1
+</pre><tr></table><p>
+
+
+<li> reverse<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(setq lst '(I hate lisp))</font>
+(I HATE LISP)
+
+&gt;<font color=blue>(reverse lst)</font>
+(LISP HATE I)
+
+&gt;<font color=blue>(setq lst '((I) hate (lisp)))</font>
+((I) HATE (LISP))
+
+&gt;<font color=blue>(reverse lst)</font>
+((LISP) HATE (I))
+</pre><tr></table>
+</ol>
+</html>

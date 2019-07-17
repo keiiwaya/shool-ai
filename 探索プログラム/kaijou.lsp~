@@ -1,0 +1,5 @@
+(defun kaijou (x n) (cond
+                      ((= n 0) (xを1))
+                      ((= x 1) (xは1))
+                      ((* x kaijou(x n-1))
+		       )))

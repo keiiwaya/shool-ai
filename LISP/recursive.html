@@ -1,0 +1,167 @@
+<html>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<h3>再帰</h3></a>
+
+<ol type=1>
+<li> フィボナッチ関数
+<ul type=circle>
+<li> f(n) = f(n - 1) + f(n - 2)        for  n > 1
+<li> f(0) = 1
+<li> f(1) = 1
+</ul>
+<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun fibonacci (n)
+        (cond
+            ((zerop n) 1)
+            ((equal n 1) 1)
+            (t (+ (fibonacci (1- n))
+                  (fibonacci (- n 2))))))</font>
+FIBONACCI
+
+&gt;<font color=blue>(fibonacci 4)</font>
+5
+</pre><tr></table><p>
+
+
+<li> latp<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun latp (lt)
+      (cond
+           ((null lt) t)
+           ((atom (car lt)) (latp (cdr lt)))
+           (t nil)))</font>
+LATP
+
+&gt;<font color=blue>(setq lst '(This is a list of atoms))</font>
+(THIS IS A LIST OF ATOMS)
+
+&gt;<font color=blue>(latp lst)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+&gt;<font color=blue>(setq lst '(This (is not) a list ((of) atoms)))</font>
+(THIS (IS NOT) A LIST ((OF) ATOMS))
+
+&gt;<font color=blue>(latp lst)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+
+
+<li> memberp<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun memberp (a lat)
+        (cond
+             ((null lat) nil)
+             ((equal (car lat) a) t)
+             (t (memberp a (cdr lat)))))</font>
+MEMBERP
+
+&gt;<font color=blue>(setq lst '(This is a list of atoms))</font>
+(THIS IS A LIST OF ATOMS)
+
+&gt;<font color=blue>(setq atm 'of)</font>
+OF
+
+&gt;<font color=blue>(memberp atm lst)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+
+
+<li> count-item<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun count-item (lst item)
+        (cond
+             ((null lst) 0)
+             ((equal (car lst) item) 
+                (1+ (count-item (cdr lst) item)))
+             (t (count-item (cdr lst) item))))</font>
+MEMBERP
+
+&gt;<font color=blue>(setq lst '(This is a a a list of a atoms))</font>
+(THIS IS A A A LIST OF A ATOMS)
+
+&gt;<font color=blue>(setq atm 'a)</font>
+A
+
+&gt;<font color=blue>(count-item lst atm)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+
+
+<li> remberp<p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun remberp (a lat)
+        (cond
+             ((null lat) '())
+             ((equal (car lat) a) (remberp a (cdr lat)))
+             (t (cons
+                    (car lat)
+                    (remberp a (cdr lat))))))</font>
+REMBERP
+
+&gt;<font color=blue>(setq lst '(This is a list of atoms))</font>
+(THIS IS A LIST OF ATOMS)
+
+&gt;<font color=blue>(setq atm 'of)</font>
+OF
+
+&gt;<font color=blue>(remberp atm lst)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+
+<li> insertR<p>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun  insertR (old new lat)
+        (cond
+             ((null lat) '())
+             (t (cond
+                    ((equal (car lat) old)
+                         (cons old (cons new (cdr lat))))
+                    (t (cons (car lat)
+                             (insertR old new (cdr lat)))))))</font>
+INSERTR
+
+&gt;<font color=blue>(setq lst '(This is a list of atoms))</font>
+(THIS IS A LIST OF ATOMS)
+
+&gt;<font color=blue>(setq atmo 'of)</font>
+OF
+
+&gt;<font color=blue>(setq atmn 'new)</font>
+NEW
+
+&gt;<font color=blue>(insertR atmo atmn lst)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+
+
+<li> insertL<p>
+insertRの例に習ってinsertLを定義せよ。<p>
+
+<li> union<p>
+和集合(union)を定義せよ。(memberp を使う)<p>
+
+<li> intersection<p>
+積集合(intersection)を定義せよ。<p>
+</ol>
+</html>

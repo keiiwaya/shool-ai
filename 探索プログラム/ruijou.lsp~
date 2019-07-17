@@ -1,0 +1,6 @@
+(defun ruijou (x)
+  (cond
+   ((zerop x) 1)
+   ((equal n 1) 1)
+   (t (* x (ruijou (1- x))))))
+  

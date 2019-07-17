@@ -1,0 +1,27 @@
+(defun plus_2_3 (l)
+  (+ (cadr l) (caddr l)))
+
+(defun bf1 (open goal rule)
+  (print open)
+  (setq open1 (sort open '< :key #'plus_2_3)) 
+  (print open1)
+  (terpri)
+  (read)
+  (cond
+   ((null open1)           (progn
+                             (terpri)
+                             (princ "見付かりませんでした。")
+                             (terpri)))
+   ((eq (caar open1) goal) (progn 
+                             (terpri)
+                             (princ 'コストは、 )
+                             (princ (cadar open1))
+                             (princ 'です。)
+                             t))
+   (t  (bf1 (append (mapcar '(lambda (x)
+                                (list (car x) 
+                                      (+ (cadar open1) (cadr x)) 
+                                         (caddr x)))
+                             (children (caar open1) rule))
+                                       (cdr open1))
+                    goal rule))))

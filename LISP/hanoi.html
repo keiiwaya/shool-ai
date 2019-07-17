@@ -1,0 +1,49 @@
+<html>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<h3>ハノイの塔</h3>
+<p>３本の棒があって、その内の１本だけにn枚の円盤が刺さっている。この円盤を次のルールで別の棒に移すとする。
+
+<p>
+<ol type=a>
+<li> 一度に１枚の円盤だけを動かすことができる。
+<li> 円盤の半径は、全て異なる。
+<li> どの円盤も、それより小さな円盤の上には置くことができない。
+</ol>
+
+<p>
+n枚の円盤を棒Ａから棒Ｂに移すには、次の手順で行えば良い。
+
+<p>
+<ol type=a>
+<li> 棒Ａから上にある(n-1)枚の円盤を予備の棒Ｃに移す。
+<li> 一番下にあった大きな円盤を棒Ａから棒Ｂに移す。
+<li> (n-1)枚の円盤を予備の棒Ｃから棒Ｂへ移す。
+<li> 同様にして(n-1)枚の円盤も動かすことができるから、再帰を用いて手順を決めることができる。
+</ol>
+
+<table border=4 cellpadding=15><td><pre>
+&gt<font color=blue>(defun tower-of-hanoi (n)
+       (transfer 'a 'b 'c n))</font>
+TOWER-OF-HANOI
+
+&gt<font color=blue>(defun move-disk (from to)
+       (list (list 'Move 'disk 'from from 'to to)))</font>
+move-disk
+
+&gt<font color=blue>(defun transfer (from to spare number)
+       (cond
+           ((equal number 1) (move-disk from to))
+           (t (append
+                  (transfer from spare to (1- number))
+                  (move-disk from to)
+                  (transfer spare to from (1- number))))))</font>
+TRANSFER
+
+&gt<font color=blue>(tower-of-hanoi 3)</font>
+((MOVE DISK FROM A TO B) (MOVE DISK FROM A TO C)
+ (MOVE DISK FROM B TO C) (MOVE DISK FROM A TO B)
+ (MOVE DISK FROM C TO A) (MOVE DISK FROM C TO B)
+ (MOVE DISK FROM A TO B))
+</pre><tr></table><p>
+</ol>
+</html>

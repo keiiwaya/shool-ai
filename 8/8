@@ -1,0 +1,59 @@
+論理プログラミング
+・AならばBである
+・BならばCである
+・AならばCである
+
+family.pl
+parentは関係名
+定数は小文字
+
+parent(親,子).
+
+
+parent(taro,jiro).
+エラー
+
+parent(pam, bob).
+true
+
+parent(pam, x).
+x = bob.
+
+parent(bob, x).
+x = ann ;
+x = pat.
+
+変数は大文字であれば何でもよい、ただしすでに定義されているような変数名は控えたほうが良い
+
+parent(X, Y)
+X = pam.
+Y = bob ;
+X = tom.
+Y = bob ;
+X = tom.
+Y = liz ;
+X = bob.
+Y = ann ;
+X = bob.
+Y = pat　;
+X = pat.
+Y = jim.
+
+plファイルを上から順にマッチングしたもんを表示
+prologは順番が大事なので、間違えるとスタックオーバーふろーでしぬ
+
+
+祖父母と孫の関係を定義
+X YのこどもZのこどもＱはXの孫
+
+grandparent(X, Y) :- parent(X, Z), parent(Z, Y).
+?- grandparent(pam, ann).
+true.
+
+?- grandparent(pam, X).
+X = ann ;
+X = pat.
+
+
+
+

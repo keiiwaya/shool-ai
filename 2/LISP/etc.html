@@ -1,0 +1,90 @@
+<html>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+
+<h3>その他の関数</h3>
+<ol type= 1>
+<!--
+<li> 属性<p>
+<pre>
+(defprop アトム　属性値　属性名)
+(get アトム　属性名)
+　属性値</pre>
+
+<table border=4 cellpadding=15><td><pre>
+&gt<font color=blue>(defprop tom jhon father)</font>
+tom
+
+&gt<font color=blue>(defprop jhon dick father)</font>
+jhon
+
+&gt<font color=blue>(defprop dick george father)</font>
+dick
+
+&gt<font color=blue>(get 'jhon 'father)</font>
+dick
+
+&gt<font color=blue>(get 'tom 'father)</font>
+jhon
+
+&gt<font color=blue>(defun gtandfather (x)
+       (cond
+           ((get x 'father)
+               (get (get x 'father) 'father))))</font>
+GRANDFATHER
+
+&gt<font color=blue>(grandfather 'jhon)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+
+&gt<font color=blue>(gtandfather 'tom)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+
+-->
+<li> lambda<p>
+局所的に(１回だけ)使う関数を、defunを使って名前を定めることなく、名前を使わないでlambadaを用いて関数を定義することができる。<p>
+<table border=4 cellpadding=15><td><pre>
+&gt<font color=blue>(setq fruits
+    '(orange apple pear apple grapefruit mango banana apple))</font>
+(ORANGE APPLE PEAR APPLE GRAPEFRUIT MANGO BANANA APPLE)
+
+&gt<font color=blue>(defun apple-1-0 (lst)<p>
+       (cond
+           ((null lst) '())
+           ((equal (car lst) 'apple)(cons 1 (apple-1-0 (cdr lst))))
+           (t (cons 0(aplle-1-0 (cdr lst))))))</font>
+APPLE-1-0
+
+&gt<font color=blue>(apple-1-0 fruits)</font>
+(0 1 0 1 0 0 0 1)
+
+&gt<font color=blue>(apply #'+ (apple-1-0 fruits))</font>
+3
+
+&gt<font color=blue>(defun countapples (lst)
+       (apply #'+ (apple-1-0 lst)))</font>
+COUNTAPPLES
+
+&gt<font color=blue>(countapples fruits)</font>
+3
+
+&gt<font color=blue>(defun countapples (lst)
+       (apply #'+
+               (mapcar '(lambda (x)
+                          (cond
+                              ((equal x 'apple) 1)
+                              (t 0)))
+                          lst)))</font>
+COUNTAPPLES
+
+&gt<font color=blue>(countapples fruits)</font>
+3
+</pre><tr></table><p>
+
+</ol>
+</html>

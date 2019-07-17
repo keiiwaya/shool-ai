@@ -1,0 +1,227 @@
+<html>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<h3>制御構造</h3>
+
+<ol type=i>
+<li><a name="eval">評価と適用</a>
+<ol type=1>
+<li> eval<p>
+<pre>
+(eval 式)
+</pre>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(setq lst '(2 5 3))</font>
+(2 5 3)
+
+&gt;<font color=blue>(setq p '+)</font>
++
+
+&gt;<font color=blue>(setq calc (cons p lst))</font>
+(+ 2 5 3)
+
+&gt;<font color=blue>calc</font>
+(+ 2 5 3)
+
+&gt;<font color=blue>(eval calc)</font>
+10
+</pre><tr></table><p>
+
+<li> apply<p>
+
+<pre>
+(apply 関数名 引数のリスト)
+</pre>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(setq lst '(2 5 3))</font>
+(2 5 3)
+
+&gt;<font color=blue>(+ lst)</font>
+Error: (2 5 3) is not of type NUMBER.
+Fast links are on: do (si::use-fast-links nil) for debugging
+Error signalled by +.
+Broken at +.  Type :H for Help.
+>><font color=blue>:q</font>
+
+&gt;<font color=blue>(plus 'lst)</font>
+Error: LST is not of type NUMBER.
+Fast links are on: do (si::use-fast-links nil) for debugging
+Error signalled by +.
+Broken at +.  Type :H for Help.
+>><font color=blue>:q</font>
+
+&gt;<font color=blue>(setq p '+)</font>
++
+
+&gt;<font color=blue>(apply p lst)</font>
+10
+
+&gt;<font color=blue>(defun countatoms (lst))
+       (cond
+           ((null lst) 0)
+           ((atom lst) 1)
+           (t (apply #'+
+                     (<a href="#mapcar">mapcar</a> 'countatoms
+                              lst)))))</font>
+COUNTATOMS
+
+&gt;<font color=blue>(setq lat '(How many atoms does this list have))</font>
+(HOW MANY ATOMS DOES THIS LIST HAVE)
+
+&gt;<font color=blue>(countatoms lat)</font>
+<table border=1 cellspacing=0><td><pre>
+                                      
+</pre><tr>
+</table>
+</pre><tr></table><p>
+</ol>
+
+<li><a name="let">順次評価</a>
+<ol type=1>
+
+<li> progn<p>
+<pre>
+(progn 式1, 式2, 式3, ...  式n)
+</pre>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun read-add ()
+	(progn
+		(princ '"input num1 : ") 
+		(setq num1 (read))
+		(princ '"input num2 : ") 
+		(setq num2 (read))
+		(+ num1 num2)))</font>
+READ-ADD
+
+&gt;<font color=blue>(read-add)</font>
+input num1 : <font color=blue>12</font>
+input num2 : <font color=blue>40</font>
+52
+</pre><tr></table><p>
+
+<li> prog1<p>
+<pre>
+(prog1 式1, 式2, 式3, ...  式n)
+</pre>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun read-add1 ()
+	(prog1
+		(princ '"input num1 : ") 
+		(setq num1 (read))
+		(princ '"input num2 : ") 
+		(setq num2 (read))
+		(+ num1 num2)))</font>
+READ-ADD1
+
+&gt;<font color=blue>(read-add1)</font>
+input num1 : <font color=blue>12</font>
+input num2 : <font color=blue>40</font>
+input num1 : 
+</pre><tr></table><p>
+
+<li> let<p>
+<pre>
+(let ( (局所変数1 初期値1)
+       (局所変数2 初期値2)
+               :
+       (局所変数m 初期値m) )
+     (progn 式1, 式2, 式3, ...  式n) )
+</pre>
+または、prognを省略して
+<pre>
+(let ( (局所変数1 初期値1)
+       (局所変数2 初期値2)
+               :
+       (局所変数m 初期値m) )
+     式1, 式2, 式3, ...  式n )
+</pre>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun compute (form)
+     (cond 
+        ((atom form) form)
+        (t (let ( (left (compute (car form)))
+                  (op (cadr form))
+                  (right (compute (caddr form))) )
+                (cond
+                   ((equal op '+) (+ left right))
+                   ((equal op '-) (- left right))
+                   ((equal op '*) (* left right))
+                   ((equal op '/) (/ left right))
+                   (t nil))))))</font>
+COMPUTE
+
+&gt;<font color=blue>(compute '((4 + 3) * (5 - 2)))</font>
+21 
+</pre><tr></table><p>
+
+</ol>
+<li><a name="if">条件判断</a>
+<ol type=1>
+<li> if<p>
+<pre>
+(if  条件式  式1  式2)
+</pre>
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun my-abs (x)
+     (if (> 0 x)
+             (- x) 
+             x))</font>
+MY-ABS
+
+&gt;<font color=blue>(my-abs 3)</font>
+3
+
+&gt;<font color=blue>(my-abs -5)</font>
+5
+</pre><tr></table><p>
+
+<li> <a href=func.html#cond>cond</a><p>
+</ol>
+<li><a name="loop">繰り返し</a>
+<ol type=1>
+<li> loop<p>
+<pre>
+(loop 式1, 式2, 式3, ...  式n)
+</pre><p>
+
+<li> return<p>
+<pre>
+(return 値)
+</pre><p>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(defun  power (m n)
+       (let ( (result 1) )
+             (loop
+                 (cond
+                    ((zerop n)  (return result)))
+                 (setq result (* m result))
+                 (setq n (1- n)))))</font>
+POWER
+
+&gt;<font color=blue>(power 3 4)</font>
+81
+
+&gt;<font color=blue>(power 2 10)</font>
+1024
+</pre><tr></table><p>
+
+
+loop用いてn!を計算する関数factorialを定義せよ。<p>
+(0! = 1, n! = n  * (n - 1) * (n - 2) * ... * 2 * 1)
+<p>
+</ol>
+<li><a name="map">map関数</a>
+<ol type=1>
+<li> <a name="mapcar">mapcar</a><p>
+<pre>
+(mapcar 関数名 引数のリスト)
+</pre>
+
+<table border=4 cellpadding=15><td><pre>
+&gt;<font color=blue>(mapcar #'1+
+      '(2 5 3))</font>
+(3 6 4)
+</pre><tr></table><p>
+</ol>
+</ol>
+</html>
